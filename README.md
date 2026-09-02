@@ -49,7 +49,7 @@ Use this script during live client engagements to guide the prospect through eac
 ### Phase 3: Deliver & Automate (Google Workspace & Proactive Cron)
 *   **Action:** Import the briefing to Google Docs, draft the Gmail outreach, check Google Calendar, and schedule the daily monitor.
 *   **The Storyteller's Voice:** 
-    > *"Now, we package our deliverables. Gemini generates a polished Executive Briefing in Google Docs, checks our Calendar to find open slots for tomorrow, and drafts a personalized email in Gmail enclosing the GitHub guide link. Finally, we schedule a daily background Cron Job in Cowork that automatically sweeps Salesforce and Jira so we never have a GTM blindspot again."*
+    > *"Now, we package our deliverables. Gemini generates a polished Executive Briefing in Google Docs, checks our Calendar to find open slots for tomorrow, and drafts a personalized email in Gmail enclosing the GitHub guide link. Finally, we schedule a daily background Cron Job in Gemini Enterprise Spark that automatically sweeps Salesforce and Jira so we never have a GTM blindspot again."*
 
 ---
 
@@ -149,7 +149,7 @@ To execute this demo live in front of a customer, copy-paste or type these preci
 *   **Narrative:** Set up a proactive, daily background scanner to alert GTM teams of support friction on high-value accounts.
 *   **Precise Prompt:**
     ```text
-    Create and schedule a daily background job in Cowork that runs a proactive sweep of our Salesforce opportunities and support cases to detect high-value pipeline risk from customer friction.
+    Create and schedule a daily background job in Gemini Enterprise Spark that runs a proactive sweep of our Salesforce opportunities and support cases to detect high-value pipeline risk from customer friction.
     ```
 
 ### 🧹 Step 8: Automated Clean-up & Reset

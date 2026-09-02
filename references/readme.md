@@ -12,7 +12,7 @@ The goal of this demo is to show prospective clients (e.g. Cloud Architects, Sup
 It tells a unified, three-part story:
 1.  **Find the Problem (Salesforce + BigQuery):** Detect that high-value opportunities ($1.34M for United Oil) are stalled in Salesforce, trace the blockage to an unassigned support case, and use BigQuery analytics to identify a 10.25-hour support latency bottleneck due to missing technical guidelines.
 2.  **Act on the Problem (Jira + GitHub):** Create a high-priority escalation ticket (`SAM1-12`) in Jira, write a technical installation guide for the GC5060 generator system, and commit it directly to the repository main branch in GitHub (`docs/GC5060_wiring_guide.md`) to resolve the blocker.
-3.  **Deliver & Automate (Google Workspace + Cron):** Automatically generate an executive briefing Google Doc, draft a proactive Gmail outreach, check tomorrow's Google Calendar availability, and schedule a daily background Pipeline Risk Monitor cron job in Cowork to proactively flag pipeline risk.
+3.  **Deliver & Automate (Google Workspace + Cron):** Automatically generate an executive briefing Google Doc, draft a proactive Gmail outreach, check tomorrow's Google Calendar availability, and schedule a daily background Pipeline Risk Monitor cron job in Gemini Enterprise Spark to proactively flag pipeline risk.
 
 ---
 
@@ -105,7 +105,7 @@ To execute this demo live in front of a customer, copy-paste or type these preci
 *   **Narrative:** Set up a proactive, daily background scanner to alert GTM teams of support friction on high-value accounts.
 *   **Precise Prompt:**
     ```text
-    Create and schedule a daily background job in Cowork that runs a proactive sweep of our Salesforce opportunities and support cases to detect high-value pipeline risk from customer friction.
+    Create and schedule a daily background job in Gemini Enterprise Spark that runs a proactive sweep of our Salesforce opportunities and support cases to detect high-value pipeline risk from customer friction.
     ```
 
 ### 🧹 Step 8: Automated Clean-up & Reset
