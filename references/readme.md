@@ -22,10 +22,10 @@ To run this demo successfully, the field seller's Argolis sandbox must have the 
 
 | Layer | System | Scope/Permissions Required | Name/ID in Demo |
 | :--- | :--- | :--- | :--- |
-| **Salesforce** | Salesforce SObject | Read opportunities & cases. | `collections/ge-sf-connector_1788294129306` |
-| **Jira Cloud** | Jira Issues | Create tasks, update summaries, change status. | `collections/ge-app-jira-conn_1788284708607` |
-| **BigQuery** | GCP BigQuery | Query dataset in `truiz-agy-demo` project. | `collections/bq-mcp-connector_1787236389359` |
-| **GitHub** | GitHub Repositories | Read/write, create files, commit. | `collections/ge-github-ds_1788301011913` |
+| **Salesforce** | Salesforce SObject | Read opportunities & cases. | `<SALESFORCE_CONNECTOR_ID>` |
+| **Jira Cloud** | Jira Issues | Create tasks, update summaries, change status. | `<JIRA_CONNECTOR_ID>` |
+| **BigQuery** | GCP BigQuery | Query dataset in `truiz-agy-demo` project. | `<BIGQUERY_CONNECTOR_ID>` |
+| **GitHub** | GitHub Repositories | Read/write, create files, commit. | `<GITHUB_CONNECTOR_ID>` |
 | **Workspace** | Google Workspace | Read/write Google Docs, Slides, Gmail, Calendar, Drive. | Native workspace server nodes. |
 
 ---

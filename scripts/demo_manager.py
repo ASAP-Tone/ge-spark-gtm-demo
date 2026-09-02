@@ -8,6 +8,11 @@ from datetime import datetime
 STATE_FILE = "state_tracker.json"
 RUNS_DIR = "runs"
 
+# Configuration variables (obfuscated)
+# Other engineers can override these by setting environment variables
+GITHUB_CONNECTOR_ID = os.environ.get("GITHUB_CONNECTOR_ID", "<GITHUB_CONNECTOR_ID>")
+JIRA_CONNECTOR_ID = os.environ.get("JIRA_CONNECTOR_ID", "<JIRA_CONNECTOR_ID>")
+
 def load_state():
     if not os.path.exists(STATE_FILE):
         print(f"[Error] State file {STATE_FILE} not found. Ensure you are in the correct directory.")
@@ -25,7 +30,6 @@ def archive_run(state):
         print("[Warn] No active run ID found in state.")
         return False
     
-    # Locate the active run metadata
     run_data = None
     for run in state["runs"]:
         if run["run_id"] == active_id:
@@ -64,9 +68,12 @@ def reset_3p_assets(state):
         return
         
     print("\n[Step 2/5] Reverting GitHub Codebase changes...")
+    if GITHUB_CONNECTOR_ID.startswith("<"):
+        print("  ⚠ GITHUB_CONNECTOR_ID is not configured. Skipping GitHub revert.")
+        return
+        
     gh = run_data["remote_assets"].get("github_commit")
     if gh:
-        # Revert file to original content via mcp_cli
         print(f"  reverting: {gh['path']} in {gh['owner']}/{gh['repo']}...")
         args = {
             "owner": gh["owner"],
@@ -80,7 +87,7 @@ def reset_3p_assets(state):
         cmd = [
             "/Users/tonyruiz/ge_spark_workspace/.ge_spark/bin/mcp_cli",
             "--call-tool",
-            "--connector=collections/ge-github-ds_1788301011913",
+            f"--connector={GITHUB_CONNECTOR_ID}",
             "--tool-name=create_or_update_file",
             f"--args={json.dumps(args)}"
         ]
@@ -98,9 +105,12 @@ def reset_3p_assets(state):
         print("  ✓ No GitHub assets to revert.")
 
     print("\n[Step 3/5] Cleaning up Jira Escalation task...")
+    if JIRA_CONNECTOR_ID.startswith("<"):
+        print("  ⚠ JIRA_CONNECTOR_ID is not configured. Skipping Jira task reset.")
+        return
+        
     jira = run_data["remote_assets"].get("jira_issue")
     if jira:
-        # Transition Jira task to closed/archived, or rename it
         print(f"  updating: {jira['key']} (ID: {jira['id']})...")
         args = {
             "ProjectId": "10000",
@@ -116,14 +126,14 @@ def reset_3p_assets(state):
         cmd = [
             "/Users/tonyruiz/ge_spark_workspace/.ge_spark/bin/mcp_cli",
             "--call-tool",
-            "--connector=collections/ge-app-jira-conn_1788284708607",
+            f"--connector={JIRA_CONNECTOR_ID}",
             "--tool-name=update_issue",
             f"--args={json.dumps({'issueIdOrKey': jira['key'], 'fields': args})}"
         ]
         cmd_status = [
             "/Users/tonyruiz/ge_spark_workspace/.ge_spark/bin/mcp_cli",
             "--call-tool",
-            "--connector=collections/ge-app-jira-conn_1788284708607",
+            f"--connector={JIRA_CONNECTOR_ID}",
             "--tool-name=change_issue_status",
             f"--args={json.dumps({'issueIdOrKey': jira['key'], 'transitionNameOrId': 'Done'})}"
         ]
@@ -167,11 +177,11 @@ def generate_workspace_instructions(run_data):
     
     prompt = "Please clean up the following Workspace assets generated for this demo:\n"
     if gdocs:
-        prompt += f"1. call_mcp_tool(\"gdrive\", \"trash\", {{\"file_id\": \"{gdocs['id']}\"}}) - Trashes Google Doc ''{gdocs['title']}''\n"
+        prompt += f"1. call_mcp_tool("gdrive", "trash", {{"file_id": "{gdocs['id']}"}}) - Trashes Google Doc ''{gdocs['title']}''\n"
     if gslides:
-        prompt += f"2. call_mcp_tool(\"gdrive\", \"trash\", {{\"file_id\": \"{gslides['id']}\"}}) - Trashes Google Slide ''{gslides['title']}''\n"
+        prompt += f"2. call_mcp_tool("gdrive", "trash", {{"file_id": "{gslides['id']}"}}) - Trashes Google Slide ''{gslides['title']}''\n"
     if gmail:
-        prompt += f"3. call_mcp_tool(\"gmail\", \"trash\", {{\"message_id\": \"{gmail['id']}\"}}) - Trashes Gmail Draft ID: {gmail['id']}\n"
+        prompt += f"3. call_mcp_tool("gmail", "trash", {{"message_id": "{gmail['id']}"}}) - Trashes Gmail Draft ID: {gmail['id']}\n"
     
     prompt += "4. Let me know when they are successfully moved to the trash so the reset is 100% complete!"
     print(prompt)
@@ -192,14 +202,21 @@ def main():
     print(f" DEMO RESET UTILITY: Active Run ''{active_id}'' for {run_data['customer']}")
     print(f"============================================================\n")
     
+    # 1. Archive local artifacts
     dest_dir = archive_run(state)
     if not dest_dir:
         return
         
+    # 2. Reset 3P assets (GitHub, Jira)
     reset_3p_assets(state)
+    
+    # 3. Clear active workspace root files
     delete_local_deliverables(run_data)
+    
+    # 4. Generate Google Workspace instructions
     generate_workspace_instructions(run_data)
     
+    # 5. Update state
     run_data["status"] = "archived_and_cleared"
     run_data["archive_directory"] = dest_dir
     save_state(state)

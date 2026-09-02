@@ -10,7 +10,7 @@ A complete, version-controlled **"Demo-as-Code"** package designed for Cloud Arc
 
 ## 1. What This Skill Does
 
-This skill demonstrates the power of **Gemini Enterprise**'s agentic reasoning and tool integration by tackling a realistic, high-stakes business scenario. 
+This skill demonstrates the power of **Gemini Enterprise**'s agentic reasoning and tool integration by rallying five enterprise systems to resolve support friction, unblock stalled pipelines, and automate GTM deliverables.
 
 ### The Business Scenario:
 *   **The Problem:** High-value enterprise accounts (e.g., United Oil & Gas Corp) are experiencing stalled sales pipelines because of unresolved technical customer support cases. 
@@ -31,7 +31,7 @@ Use this script during live client engagements to guide the prospect through eac
 ```
 
 ### Phase 1: Find the Problem (Salesforce & BigQuery Analytics)
-*   **Action:** Query Salesforce to locate at-risk, open opportunities $\ge \$100\text{k}$ with overdue close dates, and cross-reference them with open support cases.
+*   **Action:** Query Salesforce to locate at-risk, open opportunities $\ge \$100	ext{k}$ with overdue close dates, and cross-reference them with open support cases.
 *   **The Storyteller's Voice:** 
     > *"Let's check our pipeline. We see that we have $2.91M in stalled deals. Most critically, $1.34M of that exposure is concentrated within United Oil. Why? They've had a Salesforce support case unassigned since July 2025 asking for GC5060 generator wiring guidance."*
 *   **Action:** Query our historical support database in BigQuery (`truiz-agy-demo` project) to find the bottleneck.
@@ -91,8 +91,8 @@ To clean up remote systems and archive local files so you can repeat the demo fo
 ## 4. Prerequisites & Connectors Setup
 
 Before starting, verify that your field Argolis sandbox is configured with the following active integrations:
-*   **Salesforce Connector:** ID `collections/ge-sf-connector_1788294129306`
-*   **Jira Cloud Connector:** ID `collections/ge-app-jira-conn_1788284708607`
-*   **BigQuery Connector:** ID `collections/bq-mcp-connector_1787236389359`
-*   **GitHub Connector:** ID `collections/ge-github-ds_1788301011913`
+*   **Salesforce Connector:** ID `<SALESFORCE_CONNECTOR_ID>`
+*   **Jira Cloud Connector:** ID `<JIRA_CONNECTOR_ID>`
+*   **BigQuery Connector:** ID `<BIGQUERY_CONNECTOR_ID>`
+*   **GitHub Connector:** ID `<GITHUB_CONNECTOR_ID>`
 *   **Workspace Connectors:** Native Google Docs, Google Slides, Google Calendar, Gmail, and Google Drive server permissions.
