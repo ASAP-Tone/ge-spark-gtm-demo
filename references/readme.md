@@ -24,7 +24,7 @@ To run this demo successfully, the field seller's Argolis sandbox must have the 
 | :--- | :--- | :--- | :--- |
 | **Salesforce** | Salesforce SObject | Read opportunities & cases. | `<SALESFORCE_CONNECTOR_ID>` |
 | **Jira Cloud** | Jira Issues | Create tasks, update summaries, change status. | `<JIRA_CONNECTOR_ID>` |
-| **BigQuery** | GCP BigQuery | Query dataset in `truiz-agy-demo` project. | `<BIGQUERY_CONNECTOR_ID>` |
+| **BigQuery** | GCP BigQuery | Query dataset in `<GCP_PROJECT_ID>` project. | `<BIGQUERY_CONNECTOR_ID>` |
 | **GitHub** | GitHub Repositories | Read/write, create files, commit. | `<GITHUB_CONNECTOR_ID>` |
 | **Workspace** | Google Workspace | Read/write Google Docs, Slides, Gmail, Calendar, Drive. | Native workspace server nodes. |
 

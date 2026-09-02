@@ -34,7 +34,7 @@ Use this script during live client engagements to guide the prospect through eac
 *   **Action:** Query Salesforce to locate at-risk, open opportunities $\ge \$100	ext{k}$ with overdue close dates, and cross-reference them with open support cases.
 *   **The Storyteller's Voice:** 
     > *"Let's check our pipeline. We see that we have $2.91M in stalled deals. Most critically, $1.34M of that exposure is concentrated within United Oil. Why? They've had a Salesforce support case unassigned since July 2025 asking for GC5060 generator wiring guidance."*
-*   **Action:** Query our historical support database in BigQuery (`truiz-agy-demo` project) to find the bottleneck.
+*   **Action:** Query our historical support database in BigQuery (`<GCP_PROJECT_ID>` project) to find the bottleneck.
 *   **The Storyteller's Voice:** 
     > *"Let's analyze our support logs. BigQuery reveals that generator inquiries average a slow 10.25 hours to resolve—41% slower than standard tickets. It's dragging our CSAT down to 4.00. Since L1 agents resolve 94.5% of these without escalation, this isn't a skill deficit; it's a documentation deficit."*
 

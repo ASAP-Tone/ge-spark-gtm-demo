@@ -1,3 +1,8 @@
+---
+name: repeatable-gtm-support-demo
+description: Guide and scripts to execute, run, and automatically reset the cross-system Salesforce, BigQuery, Jira, GitHub, and Google Workspace repeatable demo.
+---
+
 # repeatable-gtm-support-demo
 
 This skill encapsulates the execution and automated reset of the cross-system **Salesforce CRM \u2192 BigQuery Analytics \u2192 Jira Escalation \u2192 GitHub Codebase \u2192 Google Workspace** demonstration. It shows a GTM prospect how technical support latency drags customer CSAT and stalls high-value sales pipeline, and demonstrates how Gemini Enterprise automates the entire cross-functional fix.
@@ -7,7 +12,7 @@ This skill encapsulates the execution and automated reset of the cross-system **
 To execute this demo, the active session must have access to the following 5 connectors:
 1.  **Salesforce Connector (salesforce):** Querying opportunities (`Amount`, `CloseDate`, `Probability`) and cases.
 2.  **Jira Cloud Connector (jira):** Mapping projects (`SAM1`), issue types (`Task`), priorities (`High`), and creating/transitioning escalations.
-3.  **BigQuery Connector (custom_mcp):** Querying support tables in GCP project `truiz-agy-demo` to extract latency and CSAT averages.
+3.  **BigQuery Connector (custom_mcp):** Querying support tables in GCP project `<GCP_PROJECT_ID>` to extract latency and CSAT averages.
 4.  **GitHub Connector (github):** Auditing and committing guidelines directly to repository `ASAP-Tone/adk-salesforce-agent`.
 5.  **Google Workspace Server Nodes:** Native Workspace MCP servers (`gdocs`, `gcalendar`, `gmail`, `gslides`, `gdrive`).
 
@@ -20,7 +25,7 @@ Query Salesforce for high-value open opportunities (Amount >= $100k) where the c
 *   *Key Insight:* Identify that **United Oil & Gas Corp.** has **$1.34M in exposure** stalled due to Salesforce Case #00001002 seeking "electrical wiring guidance for GC5060".
 
 ### Step 2: Query Support Latency in BigQuery
-Run analytical queries on GCP project `truiz-agy-demo` support tables to prove *why* the Case is unassigned.
+Run analytical queries on GCP project `<GCP_PROJECT_ID>` support tables to prove *why* the Case is unassigned.
 *   *Key Insight:* Support categories related to generator setup average **10.25 hours** to resolve (41% slower than baseline) and drag CSAT down to **4.00/5.00** (target is 4.70). 94.5% are resolved at L1, revealing a documentation deficit.
 
 ### Step 3: Create Engineering Escalation in Jira
